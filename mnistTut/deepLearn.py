@@ -98,7 +98,7 @@ def bias_variable(shape):
 def draw_dot(event,x,y,flags,param):
     global img
     if event == cv2.EVENT_LBUTTONDOWN:
-        cv2.line(img,(x,y),(x,y),(1),1)
+        cv2.line(img,(x,y),(x,y),(0),1)
 
 def main(_):
   # Import data
@@ -127,7 +127,7 @@ def main(_):
 
   with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    for i in range(2000):
+    for i in range(20000):
       batch = mnist.train.next_batch(50)
       if i % 100 == 0:
         train_accuracy = accuracy.eval(feed_dict={
@@ -139,26 +139,31 @@ def main(_):
       testSet = mnist.test.next_batch(50)
       print("test accuracy %g"%accuracy.eval(feed_dict={ x: testSet[0], y_: testSet[1], keep_prob: 1.0}))
     
-    # Take in user input
-    global img
-    img = np.zeros((28,28,1), np.uint8)
-    img[:,:,:] = 0
-    cv2.namedWindow('image',0)
-    cv2.setMouseCallback('image',draw_dot)
-    while(1):
-        cv2.imshow('image',img)
-        cv2.resizeWindow('image',1000,1000)
-        if cv2.waitKey(20) & 0xFF == 27:
-            break
-    img = img.reshape(1,784)
-    feed_dict = {x: img, keep_prob:1.0}
-    classification = sess.run([y_conv],feed_dict)
-    print(classification)
-    
+    while True:
+        # Take in user input
+        global img
+        img = np.zeros((28,28,1), np.uint8)
+        img[:,:,:] = 255
+        cv2.namedWindow('image',0)
+        cv2.setMouseCallback('image',draw_dot)
+        while(1):
+            cv2.imshow('image',img)
+            cv2.resizeWindow('image',1000,1000)
+            if cv2.waitKey(20) & 0xFF == 27:
+                break
+        img[img == 0] = 1
+        img[img == 255] = 0
+        img = img.reshape(1,784)
+        feed_dict = {x: img, keep_prob:1.0}
+        classification = sess.run([y_conv],feed_dict)
+        print(classification)
+        predicted_num = np.argmax(classification[0])
+        print("We predicted a {}.".format(predicted_num))
+
     # Save model
-    save_path = saver.save(sess, "model1.ckpt")
-    print("Model saved in file: %s" % save_path)
-    print("--- %s seconds ---" % (time.time() - start_time))  
+    #save_path = saver.save(sess, "model1.ckpt")
+    #print("Model saved in file: %s" % save_path)
+    #print("--- %s seconds ---" % (time.time() - start_time))  
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
