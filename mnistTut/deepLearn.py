@@ -112,6 +112,8 @@ def main(_):
 
   # Build the graph for the deep net
   y_conv, keep_prob = deepnn(x)
+  
+  print(type(y_conv))
 
   cross_entropy = tf.reduce_mean(
       tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y_conv))
@@ -138,7 +140,12 @@ def main(_):
     for i in xrange(10):
       testSet = mnist.test.next_batch(50)
       print("test accuracy %g"%accuracy.eval(feed_dict={ x: testSet[0], y_: testSet[1], keep_prob: 1.0}))
+
+    # Save the variables to disk.
+    save_path = saver.save(sess, "./model.ckpt")
+    print("Model saved in file: %s" % save_path)    
     
+    '''
     while True:
         # Take in user input
         global img
@@ -159,6 +166,7 @@ def main(_):
         print(classification)
         predicted_num = np.argmax(classification[0])
         print("We predicted a {}.".format(predicted_num))
+        '''
 
     # Save model
     #save_path = saver.save(sess, "model1.ckpt")
