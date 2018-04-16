@@ -1,0 +1,12 @@
+clothing_sizes = [
+    {
+        "first_name" : "simon",
+        "last_name" : "fong",
+        "collar_size" : 15,
+        "shirt_sleeve_size" : 32,
+        "waist_size" : 28,
+        "leg_inseem_size" : 30, 
+        "shoe_size" : 8.5,
+        "size_type" : "US"
+    }    
+]
