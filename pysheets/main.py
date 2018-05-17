@@ -21,7 +21,7 @@ if(__name__ == '__main__'):
         print('Name, Major:')
         for row in values:
             # Print columns A and E, which correspond to indices 0 and 4.
-           user = objects.User(row)
+           user = User(row)
            users[user.barcode] = user
            
     while(True):
