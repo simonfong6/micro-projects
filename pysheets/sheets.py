@@ -29,11 +29,13 @@ class GoogleSheets:
         
         if not values:
             print('No data found.')
+            return None
         else:
             for row in values:
                 # Print all columns
                 for elem in row:
-                    print(elem)
+                    #print(elem)
+                    pass
         return values
      
     def write(self,range_name,
@@ -48,7 +50,7 @@ class GoogleSheets:
                                           body=body)
         result = request.execute()
         num_updated = result.get('updatedCells')
-        print('{0} cells updated.'.format(num_updated));
+        #print('{0} cells updated.'.format(num_updated));
         return num_updated
         
 
