@@ -53,7 +53,7 @@ def checkout(sheets,users,first_empty_row):
     checked_out_time = str(datetime.datetime.now().time())
     checked_in_time = None
 
-    sheet = 'Sheet1'
+    sheet = 'Equipment'
     start = 'A' 
     end = 'I' 
     RANGE_NAME = ('%s!%s%d:%s%d' % (sheet,start,first_empty_row,end,
@@ -81,7 +81,7 @@ def checkin(sheets,users):
         if(laptop != ''):
             if(row[5] == laptop):
                 if(len(row) < 10):
-                    sheet = 'Sheet1'
+                    sheet = 'Equipment'
                     cell = 'J' 
                     RANGE_NAME = ('%s!%s%d' % (sheet,cell,i))
                     values = [
