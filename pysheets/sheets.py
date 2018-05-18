@@ -16,7 +16,7 @@ class GoogleSheets:
         store = file.Storage(credentials)
         creds = store.get()
         if not creds or creds.invalid:
-            flow = client.flow_from_clientsecrets(secret, scopes)
+            flow = client.flow_from_clientsecrets(secret, self.scopes)
             creds = tools.run_flow(flow, store)
         service = build('sheets', 'v4', http=creds.authorize(Http()))
         self.spreadsheet = service.spreadsheets().values()
