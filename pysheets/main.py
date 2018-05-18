@@ -123,7 +123,9 @@ if(__name__ == '__main__'):
         if(one):
             print("Running Checkout:")
             checkout_values = read_checkout(sheets)
-            length = len(checkout_values)
+            length = 0
+            if(checkout_values is not None):
+                length = len(checkout_values)
             first_empty_row = length + 2    #Defined by us
             checkout(sheets,users,first_empty_row)
             continue
