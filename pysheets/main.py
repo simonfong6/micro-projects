@@ -9,8 +9,11 @@ import datetime
 from sheets import GoogleSheets
 from objects import User, Users, Equipment
 
+EQUIPMENT_SHEET = 'Equipment'
+USERS_SHEET = 'Users'
+
 def read_users(sheets):
-    RANGE_NAME = 'Users!A2:F'
+    RANGE_NAME = '{}!A2:F'.format(USERS_SHEET)
     values = sheets.read(RANGE_NAME)
     users = Users()
     if not values:
@@ -53,10 +56,10 @@ def checkout(sheets,users,first_empty_row):
     checked_out_time = str(datetime.datetime.now().time())
     checked_in_time = None
 
-    sheet = 'Equipment'
+    
     start = 'A' 
     end = 'I' 
-    RANGE_NAME = ('%s!%s%d:%s%d' % (sheet,start,first_empty_row,end,
+    RANGE_NAME = ('%s!%s%d:%s%d' % (EQUIPMENT_SHEET,start,first_empty_row,end,
                                        first_empty_row))
     values = [
         [date, first_name, last_name, pid, class_name, laptop_num, 
@@ -81,9 +84,8 @@ def checkin(sheets,users):
         if(laptop != ''):
             if(row[5] == laptop):
                 if(len(row) < 10):
-                    sheet = 'Equipment'
                     cell = 'J' 
-                    RANGE_NAME = ('%s!%s%d' % (sheet,cell,i))
+                    RANGE_NAME = ('%s!%s%d' % (EQUIPMENT_SHEET,cell,i))
                     values = [
                         [str(datetime.datetime.now().time())]
                     ]
@@ -97,7 +99,7 @@ def checkin(sheets,users):
     
     
 def read_checkout(sheets):
-    range_name = 'Sheet1!A2:J'
+    range_name = EQUIPMENT_SHEET + '!A2:J'
     return sheets.read(range_name)
     
 
