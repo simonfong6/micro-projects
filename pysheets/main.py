@@ -64,6 +64,7 @@ def checkout(sheets,users,first_empty_row):
     ]
     
     sheets.write(RANGE_NAME,values)
+    print("{} checked out laptop {}.".format(first_name,laptop_num))
     
 def checkin(sheets,users):
     # Col length 10
@@ -105,12 +106,29 @@ if(__name__ == '__main__'):
     sheets = GoogleSheets(SPREADSHEET_ID)
     
     users = read_users(sheets)
-    
-    checkin(sheets,users)
            
     while(True):
-        checkout_values = read_checkout(sheets)
-        length = len(checkout_values)
-        first_empty_row = length + 2    #Defined by us
-        checkout(sheets,users,first_empty_row)
+        print("Choose what you wanna do:")
+        print("1. Checkout")
+        print("2. Checkin")
+        cmd = raw_input("Command: ")
+        one = cmd == '1'
+        two = cmd == '2'
+        if(not one and not two):
+            print("Not a valid command. Please choose available.")
+            continue
+            
+        if(one):
+            print("Running Checkout:")
+            checkout_values = read_checkout(sheets)
+            length = len(checkout_values)
+            first_empty_row = length + 2    #Defined by us
+            checkout(sheets,users,first_empty_row)
+            continue
+        if(two):
+            print("Running Checkin:")
+            checkin(sheets,users)
+            continue
+            
+        print("You have gone to a weird place.")
 
