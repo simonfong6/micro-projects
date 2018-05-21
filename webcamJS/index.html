@@ -1,6 +1,10 @@
  <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        input{width: 300px}
+    </style>
   </head>
   <body onload="init();">
     <h1>Take a snapshot of the current video stream</h1>
@@ -9,7 +13,12 @@
     <button onclick="startWebcam();">Start WebCam</button>
     <button onclick="stopWebcam();">Stop WebCam</button> 
        <button onclick="snapshot();">Take Snapshot</button> 
-       <a id="download" download="image.png" href=""><button>Download</button></a>
+       <a id="download" download="image.jpg" href=""><button>Download</button></a>
+       <button onclick="post_request();">Post Request</button> 
+    </p>
+    <p>
+        <input id="endpoint" type=text placeholder="http:localhost:8080/predict">
+        <button onclick="setEndpoint()">Set Endpoint</button>
     </p>
     <video onclick="snapshot(this);" width=400 height=400 id="video" controls autoplay></video>
   <p>
@@ -70,14 +79,34 @@
         canvas = document.getElementById("myCanvas");
         ctx = canvas.getContext('2d');
       }
-
+      
+      var imageURI;
       function snapshot() {
          // Draws current image from the video element into the canvas
         ctx.drawImage(video, 0,0, canvas.width, canvas.height);
-        var imageURI = canvas.toDataURL()
-        console.log(imageURI);
+        imageURI = canvas.toDataURL('image/jpeg');
+        //console.log(imageURI);
         download = document.getElementById("download");
         download.href = imageURI;
+      }
+      var endpoint = "http://localhost:8080/predict";
+      function post_request() {
+        console.log("Posting");
+        url = "http://mothakes.requestcatcher.com/";
+        url = endpoint;
+        data = {"image": imageURI};
+        console.log(data);
+        $.post(url,data, function(data, status){
+            //alert("Data: " + data + "\nStatus: " + status);
+            console.log(data);
+        });
+      }
+      
+      function setEndpoint() {
+        console.log("Setting endpoint.");
+        text = document.getElementById("endpoint");
+        console.log(text.value);
+        endpoint = text.value;
       }
 
   </script>
