@@ -1,10 +1,17 @@
+"""
+AutoComplete
+============
+
+Given a set of words and a string, we return the words that start with that
+string.
+"""
+
 import logging
 
 
 class Node:
 
-    def __init__(self, char):
-        self.value = char
+    def __init__(self):
         self.words = []
         self.nodes = {}
 
@@ -13,13 +20,31 @@ class Node:
 
 
 class Trie:
+    """
+    A multi-way trie to store a given set of words.
+
+    Attributes:
+        trie (Node): The root node of the trie. Initiliazed to empty string.
+    """
 
     def __init__(self):
-        self.trie = Node('')
+        self.trie = Node()
 
     def get_node(self, node, char):
+        """
+        Finds the node under the given node mapped by the char. Inserts the
+            node if it does not already exist.
+
+        Args:
+            node (Node): The current node whose children to search for the node
+                for the given char.
+            char (str): A single character string.
+
+        Returns:
+            Node: The node mapped by the char.
+        """
         if char not in node.nodes:
-            node.nodes[char] = Node(char)
+            node.nodes[char] = Node()
 
         the_node = node.nodes[char]
         return the_node
@@ -50,7 +75,9 @@ class AutoComplete:
         self.process()
 
     def insert_word_map(self, word, name):
-        message = "Inserting into word map: (word: '{}', name: '{}')".format(word, name)
+        message = "Inserting into word map: (word: '{}', name: '{}')".format(
+                                                                        word,
+                                                                        name)
         logging.debug(message)
 
         if word not in self.word_map:
