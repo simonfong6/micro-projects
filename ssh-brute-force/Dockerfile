@@ -12,6 +12,8 @@ RUN apt-get install -y python3.5
 RUN apt-get install -y python3-pip
 
 # Install cryptography dependencies:
+# Dependecies for Ubuntu found here:
+# https://cryptography.io/en/latest/installation/
 RUN apt-get install -y libffi-dev
 RUN apt-get install -y libssl-dev
 RUN apt-get install -y build-essential
