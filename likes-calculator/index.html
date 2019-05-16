@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- Created December 25, 2016 -->
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="script.js"></script>
+<script>
+	if(window.location.href.slice(-1) !== "#")
+		window.location.href="index.html?#";
+</script>
+<title>LMR Calculator</title>
+</head>
+
+<body>
+
+<center>
+
+<div id="calculator">
+	<h2>Facebook Likes/Minute Calculator</h2><br><br>	
+
+	<form action="#">
+	<span class="textLabels">Number of Likes: </span>
+	<input class="text" type="text" id="numLikes" value=""> <br>
+	<span class="textLabels">Number of Minutes Passed: </span>
+	<input class="text" type="text" id="numMins" value=""> <br>
+	<button id="calculate">Calculate</button><br><br><br>
+	</form>
+	
+	<span class="textLabels">Likes/Minute Ratio (LMR)</span>
+	<p>0</p>
+</div> <!-- END calculator -->	
+ 
+
+</center>
+
+
+</body>
+</html>

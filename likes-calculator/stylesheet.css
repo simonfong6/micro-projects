@@ -1,0 +1,27 @@
+#calculator {
+	margin: auto;
+	margin-top: 200px;
+	margin-bottom: 250px;
+}
+
+	.text {
+		
+	}
+
+	.textLabels{
+		font-weight: bold;
+	}
+	#numLikes{
+		
+	}
+	
+	#numMins{
+		
+	}
+	
+	#calculate {
+		color: black;
+		background-color: #ffd700;
+		height: 30px;
+		border: 0px;
+	}
