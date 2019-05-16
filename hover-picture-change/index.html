@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Picture Test</title>
+	<script src="https://simplewebrtc.com/latest-v2.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+
+<body>
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="init()">
+	<div ng-repeat="person in persons"style="float: left; width: 30%">
+		<center><span class="name"><strong>{{person.name}}</strong></span><br>
+		<img src={{person.imageURL}} ng-mouseenter="toFunny(person)" ng-mouseleave="toNormal(person)" >
+		<h3>Biography</h3></center>
+		<p>{{person.bio}}</p>
+	</div>
+	<video height="300" id="localVideo"></video>
+       <div id="remotesVideos"></div>
+</div>
+
+<script>
+var webrtc = new SimpleWebRTC({
+  // the id/element dom element that will hold "our" video
+  localVideoEl: 'localVideo',
+  // the id/element dom element that will hold remote videos
+  remoteVideosEl: 'remotesVideos',
+  // immediately ask for camera access
+  autoRequestMedia: true
+});
+webrtc.on('readyToCall', function () {
+  // you can name it anything
+  webrtc.joinRoom('your awesome room name');
+});
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$scope.persons = [
+			{
+				"name" : "Michael Chen",
+				"imageURL" : "michaelchen.jpg",
+				"bio" : "I like anime, manga, Japanese food and culture. I enjoy ramen and boba very much."
+			},{
+				"name" : "Armin Jamshidi",
+				"imageURL" : "arminjamshidi.jpg",
+				"bio" : "I was born in Iran, but I grew up in Dubai. While going to school there, I started my own SAT prep center."
+			},{
+				"name" : "Si Wu",
+				"imageURL": "siwu.jpg",
+				"bio" : "I am Si Wu and I am from Chicago. During my time in Chicago, I performed in Accapella comptetions and even went to state level."
+			}
+	]
+	$scope.init = function(){
+		
+	}
+	$scope.toFunny = function(person){
+		person.imageURL = person.imageURL.replace(".","-funny.");
+	}
+	
+	$scope.toNormal = function(person){
+		person.imageURL = person.imageURL.replace("-funny.",".");
+	}
+	$scope.repeat = function(){
+		person in persons
+	}
+	console.log($scope.persons[0].name);
+});
+
+</script>
+  
+</body>
+</html>
