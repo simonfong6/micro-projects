@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="script.js"></script>
+<title></title>
+</head>
+
+<body>
+<div id="wrapper">
+
+
+
+<header>
+</header>
+
+
+<div class="colors" id="red">
+</div><!-- END red -->
+
+
+<div class="colors" id="green" style="font-size: 5em; text-align: center;">
+Jason is a 'wonderful'
+</div> <!-- END green -->
+
+<div class="colors" id="blue">
+</div> <!-- END blue -->
+
+</div> <!-- END wrapper -->
+
+<script>
+/*
+$('#red').click(function(){
+   window.location.href='red.html';
+});
+$( "#red" ).click(function() {
+  alert( "Handler for .click() called." );
+});
+*/
+$( function() {
+	$( ".colors" ).draggable();
+} );
+var i = 1;
+console.log(i);
+i += 1;
+console.log(i);
+</script>
+
+</body>
+</html>
