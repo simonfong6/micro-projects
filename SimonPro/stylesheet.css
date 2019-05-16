@@ -1,0 +1,104 @@
+
+table, th, td {
+	border: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+}
+p#right {
+	float:right;
+}
+ul#menu {
+	padding: 0px;
+}
+ul#menu li{
+	display: inline;
+}
+ul#menu li a {
+	background-color: #17b339;
+	color: white;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 4px 4px 0 0;
+}
+ul#menu li a:hover {
+	background-color: white;
+	color: black;
+}
+#page {
+	background-image: url("");
+	margin-top: 30px;
+	margin-left: 150px;
+	margin-right: 150px;
+}
+#header {
+	background-color: #007eff;
+	color: white;
+	text-align: center;
+	padding: 5px;
+}
+#nav {
+	line-height:30px;
+	background-color:#eeeeee;
+	height:900px;
+	width:100px;
+ 	float:left;
+	padding:5px;	      
+}
+#section {
+	width: 800px;
+	float: none;
+	padding: 10px;
+} 
+input {
+	margin-left:50%;
+}
+button {
+	float:left;
+}
+#eyebutton {
+	margin-top:120px;
+}
+#social {
+	width:10vw;
+	float:right;
+	padding:5px;
+	lineheight:30px;
+	background-color:#eeeeee;
+	height:100vh;
+	text-align:center;
+}
+body.index {
+	background-color: #f3f3f3;	
+}
+#icon_social {
+	height: 32px;
+	width:32px;
+}
+#header_welcome {
+	text-align:center;
+}
+#blockChatRoom {
+	width: 800px;
+	height: 600px;
+	float: none;
+	padding: 10px;
+}
+#areaChatRoom {
+	width: 600px;
+	height: 400px;
+	float: none;
+	border-style: solid;
+	border-color: grey;
+	overflow: auto;
+}
+#listChatRoom { 
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0;
+}
+#listChatRoom li { 
+	padding: 5px 10px; 
+}
+#listChatRoom li:nth-child(odd) { 
+	  background: #eee; 
+}
